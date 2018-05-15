@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang=ko>
+<head>
+<meta charset="utf-8">
+<title>사진</title>
+<link rel="stylesheet" href="stylesheets/style.css">
+</head>
+
+<body>
+
+<h2>사진</h2>
+
+<hr color="#999"/>
+
+<script src="javascripts/jquery-1.12.4.min.js"></script>
+<script src="javascripts/socket.io.js"></script>
+<script src="javascripts/annyang.min.js"></script>
+<script src="javascripts/responsivevoice.js"></script>
+
+<script>
+    $(document).ready(function () {
+        if (annyang) {
+            var commands = {
+                '날씨': function () {
+                    responsiveVoice.speak("날씨 페이지입니다.", "Korean Female");
+                    window.location.replace("page01.html");
+                },
+                '사진': function () {
+                    responsiveVoice.speak("사진 페이지입니다.", "Korean Female");
+                    window.location.replace("page02.html");
+                },
+                '지도': function () {
+                    responsiveVoice.speak("지도 페이지입니다.", "Korean Female");
+                    window.location.replace("page03.html");
+                }
+            };
+            annyang.addCommands(commands);
+            annyang.removeCallback();
+            annyang.setLanguage('ko');
+            annyang.start({ autoRestart: true, continuous: false });
+        }
+    });
+</script>
+
+<script>
+	$(function(){
+		var socket = io();
+		socket.on('url data', function(url_data){
+			window.location.replace(url_data);
+		});
+	});
+</script>
+</body>
+</html>

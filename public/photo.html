@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+<meta charset="utf-8">
+<title>Photo</title>
+<link rel="stylesheet" href="stylesheets/style.css">
+</head>
+<body>
+
+<table>
+	<tr align="center">
+		<td><div id="disp_cal" class="calendar"></div></td>
+		<td><div id="top_clock" class="topClock"></div></td>
+		<td>&nbsp; &nbsp; </td>
+		<td>|</td>
+		<td> Weather  </td><td>|</td>
+		<td> Schedule </td><td>|</td>
+		<td> Subway   </td><td>|</td>
+		<td><div class="active"> Photo  </div></td><td>|</td>
+		<!--td> page 05  </td><td>|</td-->
+		<td>&nbsp; &nbsp; </td->
+		<td width="65"><div id="temper" class="temperature"></div></td>
+		<td width="50"><img id="icon" src="./images/icons/000.png" height="50" width="50" ></td>
+	</tr>
+</table>
+
+<hr color="#999"/>
+
+<table>
+	<tr align="center"><td><h2> Photo </h2></td></tr>
+	<tr align="center"><td><img src="images/photo.png"></td></tr>
+</table>
+
+<script src="javascripts/jquery-1.12.4.min.js"></script>
+<script src="javascripts/socket.io.js"></script>
+<script src="javascripts/clock.js"></script>
+<script src="javascripts/openweather.current.js"></script>
+<script>
+	//   $('#top_clock').text(topClock);	$('#disp_cal').text(calendar);
+	$(function(){
+		var socket = io();
+		socket.on('url data', function(url_data){
+			window.location.replace(url_data);
+		});
+	});
+</script>
+</body>
+</html>
